@@ -1,0 +1,14 @@
+A:link {COLOR: #00C; TEXT-DECORATION: none}
+A:visited {COLOR: #00C;  TEXT-DECORATION: none}
+A:active {COLOR: #00C; TEXT-DECORATION: none}
+A:hover { COLOR: #00C; TEXT-DECORATION: underline}
+
+BODY {margin: 0px; padding: 2px; font-family: Helvetica, Verdana, Geneva, Swiss, SunSans-Regular; font-size: 78%; COLOR: #000000; TEXT-ALIGN: left; FONT-SIZE: 12px; }
+
+TD {TEXT-ALIGN: left;}
+
+TD.separa { LINE-HEIGHT: 6px;}
+
+SELECT.mode1 {	BACKGROUND-COLOR: #008DB7; BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; COLOR: #ffffff; FONT-SIZE: 12px; WIDTH: 170px}
+
+SELECT.mode2 {	BACKGROUND-COLOR: #008DB7; BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid; COLOR: #ffffff; FONT-SIZE: 12px; WIDTH: 168px}

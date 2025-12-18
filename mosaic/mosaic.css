@@ -1,0 +1,29 @@
+/*	Author: Thomas Winter */
+
+
+
+body {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	font-size: 7px;
+}
+
+
+p { 
+	line-height: 100%;
+}
+
+/* Links texto */
+
+a {
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+
+#project img {
+	margin: 0;
+	padding: 1px;
+}
+

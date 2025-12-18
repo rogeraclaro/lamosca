@@ -1,0 +1,14 @@
+p {
+  color: #888888;
+  font-family: Helvetica 75 Bold;
+  font-size: 8px;
+}
+
+a:link {
+  color: #888888;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #222222;
+}

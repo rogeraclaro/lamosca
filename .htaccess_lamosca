@@ -1,0 +1,74 @@
+ErrorDocument 404 /error404.html
+
+Options +FollowSymLinks
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+
+#	RewriteCond %{HTTP_HOST} ^(www.?)lamosca.info$
+#   RewriteRule    ^$ /info/ [L]
+#	RewriteCond %{HTTP_HOST} ^(www.?)lamosca.info$
+#   RewriteRule    (.*) /info/$1 [L]
+
+	RewriteCond %{HTTP_HOST} ^www.lamosca.info$
+    RewriteRule    ^$ /info/ [L]
+	RewriteCond %{HTTP_HOST} ^www.lamosca.info$
+    RewriteRule    (.*) /info/$1 [L]
+
+	RewriteCond %{HTTP_HOST} ^lamosca.info$
+    RewriteRule    ^$ /info/ [L]
+	RewriteCond %{HTTP_HOST} ^lamosca.info$
+    RewriteRule    (.*) /info/$1 [L]
+
+	RewriteCond %{HTTP_HOST} ^info.lamosca.com$
+    RewriteRule    ^$ /info/ [L]
+	RewriteCond %{HTTP_HOST} ^info.lamosca.com$
+    RewriteRule    (.*) /info/$1 [L]
+
+#	RewriteCond %{HTTP_HOST} ^bcnmcr.lamosca.com$
+#    RewriteRule    ^$ /bcnmcr/index.html [L]
+	RewriteCond %{HTTP_HOST} ^bcnmcr.lamosca.com$
+	RewriteRule    ^$ /bcnmcr/ [L]
+	RewriteCond %{HTTP_HOST} ^bcnmcr.lamosca.com$
+	RewriteRule    (.*) /bcnmcr/$1 [L]
+
+	RewriteCond %{HTTP_HOST} ^(www\.)?festadelaciencia.cat$
+    RewriteRule    ^$ /clients/festadelaciencia/ [L]
+	RewriteCond %{HTTP_HOST} ^(www\.)?festadelaciencia.cat$
+    RewriteRule    (.*) /clients/festadelaciencia/$1 [L]
+
+	RewriteCond %{HTTP_HOST} ^festadelaciencia.lamosca.com$
+    RewriteRule    ^$ /clients/festadelaciencia/ [L]
+	RewriteCond %{HTTP_HOST} ^festadelaciencia.lamosca.com$
+    RewriteRule    (.*) /clients/festadelaciencia/$1 [L]
+
+	RewriteCond %{HTTP_HOST} ^(.*?)winter.cat$
+    RewriteRule    ^$ /amics/thomas/ [L]
+	RewriteCond %{HTTP_HOST} ^(.*?)winter.cat$
+    RewriteRule    (.*) /amics/thomas/$1 [L]
+
+
+#	RewriteRule ^([0123456789]+)/?$ index.php?cid=$1 [L]
+#	RewriteRule ^([0123456789]+)/([0123456789]+)/?$ index.php?cid=$1&pid=$2 [L]
+#	RewriteCond %{REQUEST_fileNAME} !-f
+
+
+# 	rss feed
+	RewriteCond %{REQUEST_fileNAME} !-f
+	RewriteRule ^rss.xml$ /ext/rss.php [NC,L,QSA]
+
+	RewriteRule ^tshirt/$ /tshirt/coleccio.htm [L]
+	RewriteRule ^(mosaic)/?$ /mosaic/index.php [L]
+	RewriteRule ^mosaic/index.html$ /mosaic/index.php [L]
+	
+	RewriteRule ^admin/$ /admin/index.php [L]
+	RewriteRule ^admin$ /admin/index.php [L]
+
+
+	RewriteCond %{REQUEST_fileNAME} !-f
+	RewriteRule ^([a-zA-Z0-9_.-]+)/$ /index.php?curl=$1 [L]
+	
+	RewriteCond %{REQUEST_fileNAME} !-f
+	RewriteRule ^([a-zA-Z0-9_.-]+)/([a-z0-9_.-]+).html$ /index.php?curl=$1&purl=$2 [L]
+	
+</IfModule>

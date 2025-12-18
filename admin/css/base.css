@@ -1,0 +1,366 @@
+/*	Autor: www.winterdienst.info */
+
+/* Allgemein */
+
+html {
+	position: relative;
+	margin: 0;
+	padding: 0 0 80px 0;
+}
+
+body {
+	font-family: Helvetica, Verdana, Geneva, Swiss, SunSans-Regular; 
+	font-size: 78%;
+	color: #222;
+	text-align: left;	
+	margin: 0; 
+	padding: 0;
+}
+
+#container {
+	width: 100%;
+	position: relative;
+	padding: 0 0 40px 0;
+	margin: 0;
+}
+
+#head {
+	height: 60px;
+	margin: 20px 0 0 15px;
+}
+
+
+a:link, a:visited {
+	color: #FFF; 
+	text-decoration: none; 
+	background-color: #333; 
+	padding-right: 4px; 
+	padding-left: 4px;
+}
+
+a:active, a:hover {
+	color: #333; 
+	text-decoration: none; 
+	background-color: #fff; 
+	padding-right: 4px; 
+	padding-left: 4px;
+}
+
+
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+}
+
+h1 { 
+	background: transparent url(pics/lamosca_head.gif) no-repeat top left; 
+	width: 420px; 
+	height: 32px;
+	float: left;
+}
+h1 span {
+	display: none;
+}
+
+h2 {
+	color: #333;
+	background-color: #FFF;
+	font-size: 17px;
+	padding: 5px 0 4px 5px;
+	border: solid #444;
+	border-width: 0 0 1px 0;
+}
+
+.zusatz {
+	color: #576b78;
+	font-size: 15px;
+}
+
+h3 {
+	color: #222;
+	background-color: #FFF;
+	font-size: 17px;
+	padding: 5px 0 4px 6px;
+	border: solid #444;
+	border-width: 0 0 1px 0;
+}
+
+h4 {
+	font-size: 13px;
+	padding-top: 6px; 
+	padding-bottom: 4px;
+}
+
+h5 {
+	font-size: 12px;
+	padding-top: 4px; 
+	padding-bottom: 3px;
+}
+
+hr {
+	color: #000;
+	background-color: #000;
+	height: 1px;
+	margin: 15px 0 15px 0;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+
+	float: left;
+}
+/* Drei Spalten */
+
+#leftframe {
+	clear: both;
+	float: left;
+	width: 152px;
+	margin: 17px 20px 0px 0px;
+}
+
+#centerframe {
+	border: solid #444;
+	border-width: 1px 1px 0px 1px;
+	float: left;
+	width: 620px;
+	margin: 20px 20px 0 0;
+}
+
+#rightframe {
+	border: solid #444;
+	border-width: 1px;
+	float: left;
+	width: 20%;
+	margin: 20px 0px 0px 0px;
+}
+
+.kasten_inhalt_1 {
+	clear: both;
+	padding: 10px;
+	background-color: #FFF;
+	border: solid #444;
+	border-width: 0 0 1px 0;
+}
+
+.kasten_inhalt_2 {
+	clear: both;
+	padding: 10px;
+	background-color: #F2F2F2;
+	border: solid #444;
+	border-width: 0 0 1px 0;
+}
+
+.kasten_inhalt_1 p img, .kasten_inhalt_2 p img {
+	float: left;
+	border: solid #444;
+	border-width: 1px;
+	margin-right: 10px;
+}
+
+
+/* Navigation links */
+
+#leftframe ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#leftframe a {
+	display: block;
+	text-decoration: none;
+	color: #222;
+	border: solid #444;
+}
+
+
+#leftframe .rub0 a {
+	font-weight: bold;
+	width: 137px;
+	padding: 5px 0 5px 14px;
+	margin-top: 3px;
+	background-color: #FFF;
+	border-width: 1px 1px 1px 0;
+}
+
+#leftframe .rub0active a {
+	font-weight: bold;
+	width: 137px;
+	padding: 5px 0 5px 14px;
+	margin-top: 3px;
+	background-color: #FFF;
+	background: url(pics/rubactive.gif);
+	border-width: 1px 1px 1px 0;
+}
+
+#leftframe .rub0 a:hover {
+	background: url(pics/rubactive.gif);
+}
+
+
+#leftframe .rub1 a {
+	font-weight: bold;
+	width: 130px;
+	padding: 3px 0 3px 21px;
+	font-size: 0.9em;
+	background-color: #FFF;
+	border-width: 0 1px 1px 0;
+}
+
+#leftframe .rub1active a {
+	font-weight: bold;
+	width: 130px;
+	padding: 3px 0 3px 21px;
+	font-size: 0.9em;
+	background-color: #FFF;
+	background: url(pics/rubactive.gif);
+	border-width: 0 1px 1px 0;
+}
+
+#leftframe .rub1 a:hover {
+	background: url(pics/rubactive.gif);
+}
+
+
+#leftframe .rub2 a {
+	font-weight: normal;
+	width: 124px;
+	padding: 2px 0 2px 27px;
+	font-size: 0.8em;
+	background-color: #FFF;
+	border-width: 0 1px 1px 0;
+}
+
+#leftframe .rub2active a {
+	font-weight: normal;
+	width: 124px;
+	padding: 2px 0 2px 27px;
+	font-size: 0.8em;
+	background-color: #FFF;
+	background: url(pics/rubactive.gif);
+	border-width: 0 1px 1px 0;
+}
+
+#leftframe .rub2 a:hover {
+	background: url(pics/rubactive.gif);
+}
+
+/* form */
+
+input, textarea {
+	border-color: #aaa;
+}
+
+/* ajax definitions */
+
+
+.listing {
+	margin: 0;
+}
+
+
+.listing ul {
+	list-style: none;
+	padding: 0;
+	margin: 5px 0 5px 0;
+	min-height: 50px;
+	width: 100%;
+}
+
+.listing li {
+	padding: 5px 10px 5px 10px;
+	margin: 0;
+	width: 95%;
+}
+
+.listing .inputfield {
+	float: left;
+	display: block;
+	width: 20px;
+	margin: 0 5px 0 0;
+	padding: 0;
+}
+
+.listing .titlelink {
+	float: left;
+	display: block;
+	width: 350px;
+}
+
+
+.listing .titlelink a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #222;
+	background-color: #fff; 
+	padding: 2px 5px 2px 5px;
+}
+
+.listing .titlelink a:hover {
+	text-decoration: underline;
+}
+
+.listing .opener {
+	padding: 2px 0 2px 0;
+}
+
+.listing .handle {
+	float:right;
+	color: #222;
+	display: block;
+	border: solid #444 1px;
+	padding: 2px 10px 2px 10px;
+	background-color: #fff;
+	background: url(pics/handle.gif) no-repeat top right;
+	cursor: move;
+}
+
+.listing .handle:hover {
+	background-color: #eee;
+}
+
+.listing .action {
+	float:right;
+	color: #222;
+	display: block;
+	border: solid #444 1px;
+	padding: 2px 10px 2px 10px;
+	margin: 0 2px 0 0;
+	background-color: #fff;
+}
+
+.listing .action:hover {
+	background-color: #eee;
+}
+
+.listing .action a {
+	text-decoration: none;
+	width: 100%;
+	display: block;
+	color: #222;
+	background-color: transparent; 
+}
+
+.listing .action a:hover {
+	background-color: transparent; 
+}
+
+
+#new_content_list {
+	height: 150px;
+	overflow:auto;
+}
+
+#modules {
+	width: 550px;
+	border: dotted #444 1px;
+	padding: 5px 0 5px 0;
+}
+
+.clear {
+	clear:both;
+}
+

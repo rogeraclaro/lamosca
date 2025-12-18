@@ -1,0 +1,99 @@
+/*******************************************************************************
+ * by Lamosca SCCL for Lamosca corporate website at http://www.lamosca.com     *
+ *******************************************************************************/
+
+a {text-decoration: none; color: #FFFFFF; background-color: #b3b4b4;  }
+a:hover {text-decoration: none; color: #000000; background-color: #000000;}
+
+a.no {text-decoration: none; color: #ffffff;}
+a.no:hover {text-decoration: none; color: #000000; background-color: #ffffff}
+
+A.news:link
+{
+	BACKGROUND-COLOR: #FFFFFF; COLOR: #333333; FONT: 9px/9px verdana, arial, sans-serif; TEXT-DECORATION: none
+}
+A.news:visited
+{
+	BACKGROUND-COLOR: #FFFFFF; COLOR: #333333; FONT: 9px/9px verdana, arial, sans-serif; TEXT-DECORATION: none
+}
+A.news:active
+{
+	BACKGROUND-COLOR: #FFFFFF; COLOR: #333333; FONT: 9px/9px verdana, arial, sans-serif; TEXT-DECORATION: none
+}
+
+A.news:hover 
+{
+	BACKGROUND-COLOR: #000000; COLOR: #000000; FONT: 9px/9px verdana, arial, sans-serif; TEXT-DECORATION: none
+}
+
+ body.no 
+{
+font-family: Verdana, Arial, Geneva; font-size: 7px; color: #000000;
+SCROLLBAR-FACE-COLOR: #000000; SCROLLBAR-HIGHLIGHT-COLOR: #000000; SCROLLBAR-SHADOW-COLOR: #000000; SCROLLBAR-3DLIGHT-COLOR: #ffffff; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #000000; SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+}
+
+ select.menup
+{
+  font-family: Verdana, Arial, Helvetica; font-size:9; width: 110px; border-style:1px;
+}
+
+ select
+{
+  font-family: Verdana, Arial, Helvetica; font-size:9; width: 110px; border-style:1px;
+}
+
+OPTION.s1{background-color:#000000; color:white}
+OPTION.s2{background-color:#ffffff; color:black}
+
+ select.nav
+{
+  font-family: Verdana, Arial, Helvetica; font-size:9; width: 116px; border-style:1px
+}
+
+ table 
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 7pt; font-style: normal; color: #000000;
+  line-height: 13px;
+}
+
+ body 
+{
+  font-family: Verdana, Arial, Geneva; font-size: 7px; color: #000000;
+  SCROLLBAR-FACE-COLOR: #FFFFFF; SCROLLBAR-HIGHLIGHT-COLOR: #FFFFFF; SCROLLBAR-SHADOW-COLOR: #FFFFFF; SCROLLBAR-3DLIGHT-COLOR: #000000; SCROLLBAR-ARROW-COLOR:  #000000; SCROLLBAR-TRACK-COLOR: #FFFFFF; SCROLLBAR-DARKSHADOW-COLOR: #000000;
+}
+
+ INPUT.TxtBut 
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif; color: black; font-size: 8pt ; 
+  background-color: #3399CC;
+  font-weight:bold;
+}
+
+ INPUT.TxtCurr	
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif; color: black; font-size: 8pt ; 
+  background-color: #ffffff;
+  font-weight:bold;
+}
+
+ TEXTAREA.TxtBut 
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif; color: black; font-size: 8pt ; 
+  background-color: #3399CC;
+  font-weight:bold;
+}
+
+ TEXTAREA.TxtCurr	
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif; color: black; font-size: 8pt ; 
+  background-color: #ffffff;
+  font-weight:bold;
+}
+
+ formcreate
+{
+	font-size: 7pt;
+	width : 170px;
+	font-family: verdana, helvetica, sans-serif;
+	border : 1px solid Black;
+}

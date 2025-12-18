@@ -1,0 +1,486 @@
+/*	Author: Thomas Winter */
+
+
+/* General: */
+
+@font-face {
+    font-family: 'lmsc';
+    src: url('../tipo/lmsc-webfont.eot');
+    src: url('../tipo/lmsc-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../tipo/lmsc-webfont.woff2') format('woff2'),
+         url('../tipo/lmsc-webfont.woff') format('woff'),
+         url('../tipo/lmsc-webfont.ttf') format('truetype'),
+         url('../tipo/lmsc-webfont.svg#lmscregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'lmsc2';
+    src: url('../tipo/lmsc2-webfont.eot');
+    src: url('../tipo/lmsc2-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../tipo/lmsc2-webfont.woff2') format('woff2'),
+         url('../tipo/lmsc2-webfont.woff') format('woff'),
+         url('../tipo/lmsc2-webfont.ttf') format('truetype'),
+         url('../tipo/lmsc2-webfont.svg#lmscregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'lmsc3';
+    src: url('../tipo/lmsc3-webfont.eot');
+    src: url('../tipo/lmsc3-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../tipo/lmsc3-webfont.woff2') format('woff2'),
+         url('../tipo/lmsc3-webfont.woff') format('woff'),
+         url('../tipo/lmsc3-webfont.ttf') format('truetype'),
+         url('../tipo/lmsc3-webfont.svg#lmscregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'lmsc4';
+    src: url('../tipo/lmsc4-webfont.eot');
+    src: url('../tipo/lmsc4-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../tipo/lmsc4-webfont.woff2') format('woff2'),
+         url('../tipo/lmsc4-webfont.woff') format('woff'),
+         url('../tipo/lmsc4-webfont.ttf') format('truetype'),
+         url('../tipo/lmsc4-webfont.svg#lmscregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+	font-family: Helvetica, "Arial Narrow", Verdana, Arial, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #888;
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+}
+
+body {
+	text-align: left;
+	background: url(pics/bg.gif) no-repeat; 
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+p { 
+	line-height: 120%;
+	padding:0;
+	margin:0;
+}
+
+
+/* Layout */
+
+
+#container {
+	margin: 0;
+	padding: 0;
+	/* width: 1085px; */
+	max-width:100%;
+}
+
+#project {
+	clear: both;
+	margin: 0;
+	padding: 0;
+	position:relative;
+	top:50px;
+	max-width:100%;
+}
+
+#projectinfo {
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 140px;
+	position:absolute;
+	top:0px;
+	left:25px;
+	z-index:2;
+}
+
+#project #modules {
+	margin: 0;
+	position:absolute;
+	top:0px;
+	max-width:100%;
+	min-width:925px;
+	z-index:1;
+}
+
+#project #wrap {
+	padding: 0 10px 0 325px;
+	max-width:100%
+}
+
+
+#project img {
+	margin: 0;
+	padding: 0 0 10px 0;
+	display: block;
+}
+
+
+
+/* start cat information */
+
+#catModule {
+	width: 760px;
+	margin: 10px 0 10px 0;
+}
+
+.catTitle {
+	float: left;
+	width: 290px;
+	margin: 0 10px 30px 0;
+}
+
+.indexTitleText {
+	font-size: 9px;
+	margin: 0;
+	padding: 0 0 2px 0;
+}
+
+.catTitleText {
+	font-size: 9px;
+	margin: 0;
+	padding: 0 0 6px;
+	background: url(pics/line_cat.gif) no-repeat bottom left; 
+}
+
+.catTitleDrop {
+	margin: 0;
+	padding: 0;
+}
+
+select.js_index
+{
+    font-family: Verdana, Arial, Helvetica;
+	font-weight: normal;
+	font-size:9px; 
+	width: 140px; 
+}
+
+
+/* content div information */
+
+.pageTitle {
+	color: #333;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.pageInfo {
+	font-size: 9px;
+	width: 140px;
+	margin: 0 10px 230px 0;
+	float: left;
+}
+
+.pageFacebook {
+	clear:both;
+	margin: 10px 0 0 0;
+}
+
+.pageFacebook img {
+	padding: 0 0 2px 0 !important;
+}
+
+.pageSponsor {
+	clear:both;
+	margin: 110px 0 0 0;
+}
+
+.textModule {
+	margin: 0 0 10px 0;
+	display: block;
+}
+
+.flashModule {
+	margin: 0 0 7px 0;
+	display: block;
+}
+
+.break {
+	clear: both;
+}
+
+
+/* Navigation */
+
+#navigation {
+	height: 18px;
+	margin: 0;
+	padding: 39px 0 0 25px;
+	max-width:100%;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+#htmlnav {
+	float: left;
+	font-size: 10px;
+}
+
+#htmlnav {
+	float: left;
+	font-size: 10px;
+}
+
+#htmlnav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#htmlnav ul.subnavi {
+	list-style: none;
+	padding: 0 0 0 10px;
+	margin: 0;
+}
+
+#js_nav_1 {
+	float: left;
+	width: 140px;
+	margin: 0;
+	padding: 0;
+}
+
+#js_nav_2 {
+	float: left;
+	width: 140px;
+	padding: 0;
+	margin: 0 0 0 10px;
+}
+
+select.js_nav
+{
+    font-family: Verdana, Arial, Helvetica;
+	font-weight: normal;
+    font-size:9px; 
+	width: 125px; 
+}
+
+
+
+/* Links texto */
+
+a:link, a:visited {
+	text-decoration: none;
+	color: #999999;
+}
+
+a:active, a:hover {
+	color: #000000;
+}
+
+h1 { 
+	background: transparent url(pics/logo.gif) no-repeat top left; 
+	width: 263px; 
+	height: 110px;
+	float: left;
+}
+
+h1 span {
+	display: none;
+}
+
+h2 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size: 1.6em;
+	color: #d99f9a;
+	margin-top: 4px;
+}
+
+h3 {
+	color: #656868;
+	margin: 10px 0 7px 0;
+	font-size: 1.2em;
+	line-height: 140%;
+}
+
+h4 {
+	font-size: 1em;
+	margin: 20px 0 1px 0;
+}
+
+h5 {
+	font-size: 1em;
+	margin: 20px 0 -8px 0;
+}
+
+.lamosca {
+	font-family: lmsc2;
+	font-size: 20px;
+	color: #3b3b3b;
+	letter-spacing: -0.6px;
+}
+
+.adresa {
+	font-family: lmsc4;
+	font-size: 9px;
+	color: #8f8f8f;	
+	text-transform: uppercase;
+	margin-top: 80px;
+	font-weight: lighter;
+}
+
+.feis {
+	font-family: lmsc4;
+	font-size: 9px;
+	color: #8f8f8f;	
+	text-transform: uppercase;
+  margin-top: 65px;
+  line-height: 0px;
+  font-weight: lighter;
+  }
+
+  #adresa_peu {
+	display: none;
+}
+
+
+  /****************/
+  /****************/
+  /****************/
+  /****************/
+  /****************/
+  /****************/
+  /****************/
+
+
+  /* MOBIL */
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+body {
+    background: url(pics/fons.png) no-repeat;
+}
+
+#navigation {
+    height: 50px;
+    padding: 40px 50px 0 0;
+    max-width: 100%;
+    float: right;
+    margin-right: 80px;
+    margin-top: 30px;
+    margin-left: 400px;
+}
+
+#js_nav_1 {
+    float: left;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+}
+
+select.js_nav {
+    font-size: 40px;
+    width: 250px;
+
+}
+
+.indexTitleText {
+    display: none;
+}
+
+#projectinfo {
+	float: left;
+	margin: 0;
+	position:absolute;
+    top: -110px;
+	z-index:2;
+	padding-left: 25px;
+    padding-bottom: 25px;
+}
+
+.pageTitle {
+	font-size: 46px;
+}
+
+.lamosca {
+	font-family: lmsc2;
+	font-weight: 100;
+	font-size: 80px;
+	color: #3b3b3b;
+	letter-spacing: -2px;
+}
+
+.adresa {
+	margin-top: 40px;
+	display: none;
+}
+
+#project #modules {
+    margin: 0;
+    position: absolute;
+    top: 40px;
+    min-width: 10px;
+    z-index: 1;
+    margin-bottom: 400px;
+}
+
+#project #wrap {
+    padding: 0 0 0 0;
+    max-width: 100%;
+        margin-bottom: 400px;
+
+}
+
+.feis {
+	display: none;
+}
+
+.pageSponsor {
+	display: none;
+}
+
+#adresa_peu {
+	position: fixed;
+    /* top: 400px; */
+    bottom: 20px;
+    z-index: 0;
+    font-size: 50px;
+    font-weight: 100;
+    display: block;
+    left: 25px;
+}
+
+.pageInfo {
+	display: none;
+}
+.textModule {
+	display: none;
+}
+#project img {
+    background-color: white;
+}
+
+}
+
+/* Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+
+
+}

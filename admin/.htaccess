@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "lamosca.admin" 
+AuthUserFile /usr/home/lamosca.com/.htpasswd
+require user admin
