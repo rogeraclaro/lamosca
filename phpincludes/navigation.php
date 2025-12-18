@@ -1,9 +1,18 @@
 <?php
 
+// Initialize variables (protect against undefined from calling pages)
+$curl = $curl ?? '';
+$purl = $purl ?? '';
+$pageTitle = $pageTitle ?? '';
+$pagenotfound = $pagenotfound ?? false;
+$categories = '';
+$projects = '';
+$subnav = '';
+
 $sqlstr = "SELECT id,title,inturl,content FROM $categorytable ORDER BY position";
-$erg = mysql_db_query($dbname, $sqlstr);
+$erg = db_query($dbname, $sqlstr);
 $htmlnav = "    <ul>\n";
-while ($row = mysql_fetch_row($erg)) {
+while ($row = db_fetch_row($erg)) {
 	$myCid = $row[0];
 	$title = prepHtml($row[1]);
 	$cinturl = $row[2];
@@ -25,8 +34,8 @@ while ($row = mysql_fetch_row($erg)) {
 			for ($i = 0; $i < count($content); $i++) {
 				if ($content[$i]) {
 					$sqlstr2 = "SELECT id,title,active,inturl FROM $projecttable WHERE id = " . $content[$i];
-					$erg2 = mysql_db_query($dbname, $sqlstr2);
-					$row2 = mysql_fetch_row($erg2);
+					$erg2 = db_query($dbname, $sqlstr2);
+					$row2 = db_fetch_row($erg2);
 					$myPid = $row2[0];
 					$title = prepHtml($row2[1]);
 					$pinturl = $row2[3];

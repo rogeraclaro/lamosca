@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(docker-compose logs:*)",
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(htpasswd:*)",
+      "Bash(for page in \"\" \"category.php?cid=1\" \"projectlist.php?cid=1\" \"project.php?pid=2\")",
+      "Bash(do echo -n \"admin/$page: \")",
+      "Bash(done)",
+      "Bash(git add:*)"
     ]
   }
 }

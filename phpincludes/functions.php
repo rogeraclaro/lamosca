@@ -6,29 +6,8 @@
 
 	setlocale(LC_CTYPE, "es_ES");
 
-	// db connection
-	$serv = 1;
-	if($serv == 1) {
-		$db_host="localhost"; 
-		$db_user="mylamosca";
-		$db_password="4XvEvhm1";
-		$dbname="weblamosca";
-		$imgroot = "/img/";
-		$imgrootsrv = "/usr/home/lamosca.com/web/img/";
-		$myServer = "http://www.lamosca.com/";
-	} else {
-		$db_host="localhost"; 
-		$db_user="root";
-		$db_password="";
-		$dbname="weblamosca";
-		$imgroot = "/~thomas/lamosca/img/";
-		$imgrootsrv = "/Users/thomas/Sites/lamosca/img/";
-		$myServer = "http://192.168.1.219/~thomas/lamosca/";
-	}
-	$categorytable="categories";
-	$projecttable="projects";	
-	$moduletable="modules";
-	$mosaictable="mosaic";	
+	// Include database abstraction layer (PHP 8.x compatible)
+	require_once(__DIR__ . '/database.php');	
 
 
 	function prepXml($text) {
@@ -59,9 +38,9 @@
 
 		// first we ensure, that we choose the project from the right category
 		$sqlstr = "SELECT id,position,content FROM $categorytable WHERE inturl = '$curl'";
-		$erg = mysql_db_query($dbname, $sqlstr);
-		$row=mysql_fetch_row($erg);
-		$catContent = explode(",", $row[2]);
+		$erg = db_query($dbname, $sqlstr);
+		$row = db_fetch_row($erg);
+		$catContent = $row ? explode(",", $row[2] ?? '') : [];
 
 		if($id) {
 			$sqlstr = "SELECT id,modules,title FROM $projecttable WHERE id = '$id'";
@@ -71,19 +50,29 @@
 			else
 				$sqlstr = "SELECT id,modules FROM $projecttable WHERE inturl = '$purl'";
 		}
-		$erg = mysql_db_query($dbname, $sqlstr);
-		while($row=mysql_fetch_row($erg)) {
+		$erg = db_query($dbname, $sqlstr);
+		$modules = [];
+		$pid = null;
+		$project_title = '';
+		while($row=db_fetch_row($erg)) {
 			$tempid = $row[0];
-			$project_title = $row[2];
-			for($i=0; $i<count($catContent); $i++) {	
-				if($tempid == $catContent[$i] || $purl=="index") {
-					$pid = $row[0];
-					$modules = explode(";",$row[1]);
+			$project_title = $row[2] ?? '';
+			// For index page, directly use the result (no category filtering)
+			if($purl=="index") {
+				$pid = $row[0];
+				$modules = explode(";",$row[1] ?? '');
+			} else {
+				// For other pages, check if project belongs to the category
+				for($i=0; $i<count($catContent); $i++) {
+					if($tempid == $catContent[$i]) {
+						$pid = $row[0];
+						$modules = explode(";",$row[1] ?? '');
+					}
 				}
 			}
 		}
 		$imgList = "";
-		
+
 		$firstdrawn = false;
 
 		for($i=0; $i<count($modules); $i++) {	
@@ -91,8 +80,8 @@
 			if($modules[$i]) { // && !($purl=="index" && $firstdrawn) ) {
 			
 				$sqlstr = "SELECT id,title,image,imagetype,width,height,text_1,text_2,text_3,text_4,thumb,link FROM $moduletable WHERE id = " . $modules[$i];
-				$erg = mysql_db_query($dbname, $sqlstr);
-				$row=mysql_fetch_array($erg);
+				$erg = db_query($dbname, $sqlstr);
+				$row=db_fetch_array($erg);
 				$title = $row[1];
 				$image = $row[2];
 				$imagetype = $row[3];
@@ -245,13 +234,13 @@
 	   
 		// first we ensure, that we choose the project from the right category
 		$sqlstr = "SELECT id,position,content FROM $categorytable WHERE inturl = '$curl'";
-		$erg = mysql_db_query($dbname, $sqlstr);
-		$row=mysql_fetch_row($erg);
+		$erg = db_query($dbname, $sqlstr);
+		$row=db_fetch_row($erg);
 		$catContent = explode(",", $row[2]);
 
 		$sqlstr = "SELECT id,modules,inturl FROM $projecttable WHERE id = 1";
-		$erg = mysql_db_query($dbname, $sqlstr);
-		$row=mysql_fetch_row($erg);
+		$erg = db_query($dbname, $sqlstr);
+		$row=db_fetch_row($erg);
 		$pid = 1;
 		$modules = explode(";",$row[1]);
 		$startimglink = $row[2];
@@ -266,8 +255,8 @@
 		if($modid) {
 		
 			$sqlstr = "SELECT id,title,image,imagetype,width,height,text_1,text_2,text_3,text_4 FROM $moduletable WHERE id = " . $modid;
-			$erg = mysql_db_query($dbname, $sqlstr);
-			$row=mysql_fetch_row($erg);
+			$erg = db_query($dbname, $sqlstr);
+			$row=db_fetch_row($erg);
 			$title = $row[1];
 			$image = $row[2];
 			$imagetype = $row[3];
@@ -346,9 +335,9 @@
 	   $counter = 1;
 	   
 	   $sqlstr = "SELECT id,title,content,inturl FROM $categorytable ORDER BY position";
-	   $erg = mysql_db_query($dbname, $sqlstr);
+	   $erg = db_query($dbname, $sqlstr);
 	   
-	   while ($row=mysql_fetch_row($erg)) {
+	   while ($row=db_fetch_row($erg)) {
 
 		   $myCid = $row[0];
 		   $cinturl = $row[3];
@@ -368,8 +357,8 @@
 			   for($i=0; $i<count($content); $i++) {	
 				   if($content[$i]) {
 					   $sqlstr2 = "SELECT id,title,active,inturl FROM $projecttable WHERE id = " . $content[$i];
-					   $erg2 = mysql_db_query($dbname, $sqlstr2);
-					   $row2=mysql_fetch_row($erg2);
+					   $erg2 = db_query($dbname, $sqlstr2);
+					   $row2=db_fetch_row($erg2);
 					   $myPid = $row2[0];
 					   $prodtitle = prepHtml($row2[1]);
 					   $active = $row2[2];

@@ -4,7 +4,7 @@
 	require '../phpincludes/functions.php';
 	require '../phpincludes/html2text/class.html2text.inc';
 
-	$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
+	db_connect();
 
 	echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 
@@ -14,17 +14,17 @@
 	$rss_count=0;
 
 	$sqlstr = "SELECT id,inturl,rss_date,title,text_1 FROM $projecttable WHERE active = 1 AND id > 1 ORDER BY rss_date DESC";
-	$erg = mysql_db_query($dbname, $sqlstr);
-	
-	while($row=mysql_fetch_array($erg)) {
+	$erg = db_query($dbname, $sqlstr);
+
+	while($row = db_fetch_array($erg)) {
 		
 		if($rss_count<$rss_items) {
 		
 			$perma = "http://www.lamosca.com/";
 			
 			$sqlstr2 = "SELECT id,inturl,content FROM $categorytable WHERE id";
-			$erg2 = mysql_db_query($dbname, $sqlstr2);
-			while($row2=mysql_fetch_array($erg2)) {
+			$erg2 = db_query($dbname, $sqlstr2);
+			while($row2 = db_fetch_array($erg2)) {
 				$projects = explode(",",$row2['content']);
 				for($p=0;$p<count($projects);$p++) {
 					if($projects[$p]==$row['id'])
@@ -104,6 +104,6 @@
 
   </channel>
 </rss>
-<?php	
-	mysql_close($db);				
+<?php
+	db_close();
 ?>

@@ -2,7 +2,23 @@
 
 	require 'functions.php';
 
-	$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
+	// Database connection is now handled by phpincludes/database.php
+	db_connect();
+
+	// Get POST/GET variables (replaces register_globals)
+	$cid = $_POST['cid'] ?? $_GET['cid'] ?? null;
+	$pid = $_POST['pid'] ?? $_GET['pid'] ?? null;
+	$allProjects = $_POST['allProjects'] ?? $_GET['allProjects'] ?? null;
+	$projectActivate = $_POST['projectActivate'] ?? $_GET['projectActivate'] ?? null;
+	$addProject = $_POST['addProject'] ?? $_GET['addProject'] ?? null;
+	$newProject = $_POST['newProject'] ?? $_GET['newProject'] ?? null;
+	$delFromSystem = $_POST['delFromSystem'] ?? $_GET['delFromSystem'] ?? null;
+	$delProject = $_POST['delProject'] ?? $_GET['delProject'] ?? null;
+	$ProjOrder = $_POST['ProjOrder'] ?? $_GET['ProjOrder'] ?? null;
+	$ProjectOrder = $_POST['ProjectOrder'] ?? $_GET['ProjectOrder'] ?? null;
+	$content = $_POST['content'] ?? $_GET['content'] ?? null;
+	$message = '';
+	$title = '';
 		
 	if(!$cid && !$allProjects) {
 		echo "<script type='text/javascript'>window.location.href = 'index.php';</script>";
@@ -10,8 +26,10 @@
 		$sqlstr = "SELECT id,position,title,content FROM $categorytable WHERE id = $cid";
 		$erg = mysql_db_query($dbname, $sqlstr);
 		$row=mysql_fetch_row($erg);
-		$title = "Editar categoria \"".$row[2]."\"";
-		$content = $row[3];
+		if ($row) {
+			$title = "Editar categoria \"".$row[2]."\"";
+			$content = $row[3];
+		}
 	} else if($allProjects) {
 		$title = "Tots els projectes";
 	}
@@ -208,7 +226,7 @@
 			echo "<script type='text/javascript'>function deleteProject(CID, PID){check = confirm('Segur?'); if(check == true) window.location.href = 'projectlist.php?delProject=1&cid='+CID+'&pid='+PID;}</script>\n";
 		
 		}
-		mysql_close($db);
+		db_close();
 
 	?>
 	</div> 

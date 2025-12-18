@@ -1,19 +1,28 @@
-﻿<?php
+<?php
 
 	require '../phpincludes/functions.php';
-	$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
+	db_connect();
 
 	$pageTitle = "Mosaic";
 	$pageInfo = "MOSAIC IS AN EXAMPLE OF COMMUNINTY AND AT THE SAME TIME AN IMAGE. A GRAPHIC PIECE, GENERATED THANKS TO YOUR PARTICIPATION";
-	
-	if(isset($nom)) {
-	
-		//$db = mysql_connect($db_host, $db_user, $db_password) or die("Could not connect: " . mysql_error());
-		
-		$sqlstr = "SELECT id FROM $mosaictable WHERE nom = '".addslashes($nom)."' AND comentari = '".addslashes($comentari)."' ";
-		$erg = mysql_db_query($dbname, $sqlstr);
 
-		$rows=mysql_num_rows($erg);
+	// Get POST variables (replaces register_globals)
+	$nom = $_POST['nom'] ?? null;
+	$mail = $_POST['mail'] ?? '';
+	$web = $_POST['web'] ?? '';
+	$comentari = $_POST['comentari'] ?? '';
+	$color1 = $_POST['color1'] ?? null;
+	$color2 = $_POST['color2'] ?? null;
+	$color3 = $_POST['color3'] ?? null;
+	$color4 = $_POST['color4'] ?? null;
+	$color5 = $_POST['color5'] ?? null;
+
+	if(isset($nom) && $nom !== null) {
+
+		$sqlstr = "SELECT id FROM $mosaictable WHERE nom = '".db_escape($nom)."' AND comentari = '".db_escape($comentari)."' ";
+		$erg = db_query($dbname, $sqlstr);
+
+		$rows = db_num_rows($erg);
 
 		if($rows < 1) {
 			if(isset($color1))
@@ -28,27 +37,25 @@
 				$color = 2;
 			$web = "http://" . $web;
 			$web = str_replace("http://http://","http://",$web);
-			
-			$db = mysql_connect($db_host, $db_user, $db_password) or die("Could not connect: " . mysql_error());
+
 			$sqlstr = "INSERT $mosaictable VALUES ";
-			$sqlstr .= "('', '".addslashes(utf8_decode($nom))."', '".addslashes(utf8_decode($mail))."', '".addslashes(utf8_decode($web))."', '" . addslashes(utf8_decode($comentari)) . "', $color, '". time() ."')";
-			$erg = mysql_db_query($dbname, $sqlstr);
-			//mysql_close($db);
+			$sqlstr .= "('', '".db_escape($nom)."', '".db_escape($mail)."', '".db_escape($web)."', '" . db_escape($comentari) . "', $color, '". time() ."')";
+			$erg = db_query($dbname, $sqlstr);
 		}
 	}
 
 	function buildMosaic() {
-	
+
 		global $dbname,$mosaictable;
-				
+
 		$sqlstr = "SELECT id, color FROM $mosaictable ORDER BY data ASC";
-		$erg = mysql_db_query($dbname, $sqlstr);
-		
+		$erg = db_query($dbname, $sqlstr);
+
 		$columns = 56;
 		$counter = 1;
-		
+
 		$mytable = "<table cellspacing='0' cellpadding='0' border='0'>";
-		while($row=mysql_fetch_row($erg)) {
+		while($row = db_fetch_row($erg)) {
 						
 			if($counter == 1)
 				$mytable .= "<tr>";
@@ -231,5 +238,5 @@ urchinTracker();
 </html>
 
 <?php
-	mysql_close($db);				
+	db_close();
 ?>

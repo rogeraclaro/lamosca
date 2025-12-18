@@ -1,9 +1,9 @@
 <?php
 
 	require 'functions.php';
-	
 
-	$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
+	// Database connection is now handled by phpincludes/database.php
+	db_connect();
 
 
 ?>
@@ -28,7 +28,7 @@
 		$navItem = "start";
 		require 'navigation.php';
 
-		mysql_close($db);
+		db_close();
 				
 	?>
 	</div> 

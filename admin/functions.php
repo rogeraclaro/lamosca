@@ -3,24 +3,8 @@
 	setlocale(LC_CTYPE, "es_ES");
 	error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 
-
-	// db connection
-	$serv = 1;
-	if($serv == 1) {
-		$db_host="localhost"; 
-		$db_user="mylamosca";
-		$db_password="4XvEvhm1"; //";
-		$dbname="weblamosca";
-	} else {
-		$db_host="localhost"; 
-		$db_user="root";
-		$db_password="";
-		$dbname="weblamosca";
-	}
-	$categorytable="categories";
-	$projecttable="projects";	
-	$moduletable="modules";
-	$mosaictable="mosaic";	
+	// Include database abstraction layer (PHP 8.x compatible)
+	require_once(__DIR__ . '/../phpincludes/database.php');	
 
 	
 
@@ -36,9 +20,12 @@
 
 	// used in project.php
 	function module_listing($strCurrent) {
-	
+
 		global $dbname, $moduletable;
-		 
+
+		$modules = '';
+		$CurrentOptions = '';
+
 		if($strCurrent) {
 			$Current = explode(";", $strCurrent);
 			for($i=0; $i < count($Current); $i++) {			

@@ -1,9 +1,19 @@
 <?php
 
 	require_once 'functions.php';
-	
 
-	$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
+	// Database connection is now handled by phpincludes/database.php
+	db_connect();
+
+	// Get POST/GET variables (replaces register_globals)
+	$CatNew = $_POST['CatNew'] ?? $_GET['CatNew'] ?? null;
+	$CatChange = $_POST['CatChange'] ?? $_GET['CatChange'] ?? null;
+	$CatDelete = $_POST['CatDelete'] ?? $_GET['CatDelete'] ?? null;
+	$CatOrder = $_POST['CatOrder'] ?? $_GET['CatOrder'] ?? null;
+	$cid = $_POST['cid'] ?? $_GET['cid'] ?? null;
+	$title = $_POST['title'] ?? $_GET['title'] ?? '';
+	$inturl = $_POST['inturl'] ?? $_GET['inturl'] ?? '';
+	$message = '';
 
 
 	if($CatNew || $CatChange) {
@@ -211,6 +221,6 @@ if($CatOrder) {
 
 }
 
-mysql_close($db);			
+db_close();			
 
 ?>

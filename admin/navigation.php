@@ -1,8 +1,14 @@
 <?php
 
+	// Get variables
+	$ajax = $_POST['ajax'] ?? $_GET['ajax'] ?? null;
+	$pid = $_POST['pid'] ?? $_GET['pid'] ?? $pid ?? null;
+	$cid = $_POST['cid'] ?? $_GET['cid'] ?? $cid ?? null;
+	$navItem = $navItem ?? null;
+
 	if($ajax) {
 		require_once 'functions.php';
-		$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
+		db_connect();
 	}
 
     // Bei den verschachtelten Listen muss die untergeordnete Liste innerhalb des vorangehenden ¸bergeordneten li-Tags stehen. //-->
@@ -55,7 +61,7 @@
 
 
 	if($ajax) {
-		mysql_close($db);			
+		db_close();			
 	}
 
 

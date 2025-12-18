@@ -1,20 +1,13 @@
 <?php
 
-	// db connection
-	$host="localhost"; 
-	$db_user="mylamosca";
-	$db_password="4XvEvhm1";
-	$dbname="weblamosca";
-	$mosaictable="mosaic";	
-	
+	// Include database abstraction layer (PHP 8.x compatible)
+	require_once(__DIR__ . '/../phpincludes/database.php');
+
 	function buildMosaic() {
-		global $host;
-		global $db_user;
-		global $db_password;
 		global $dbname;
 		global $mosaictable;
-		
-		$db = mysql_connect($host, $db_user, $db_password) or die("Could not connect: " . mysql_error());
+
+		db_connect();
 		
 		$sqlstr = "SELECT id, color FROM $mosaictable ORDER BY data ASC";
 		$erg = mysql_db_query($dbname, $sqlstr);
@@ -48,7 +41,7 @@
 		
 		echo $mytable;
 		
-		mysql_close($db);
+		db_close();
 	}
 	
 ?>

@@ -45,17 +45,16 @@ else
 
 <?php
 	require('functions.php');
-	
-		$db = mysql_connect($db_host, $db_user, $db_password) or die("Could not connect: " . mysql_error());
-		
+	db_connect();
+
 		$sqlstr = "SELECT id, nom, mail, web, comentari, color, data FROM $mosaictable ORDER BY data DESC";
-		$erg = mysql_db_query($dbname, $sqlstr);
-		
+		$erg = db_query($dbname, $sqlstr);
+
 		$columns = 43;
 		$counter = 1;
-		
+
 		$mytable = "<table cellspacing='0' cellpadding='1'>";
-		while($row=mysql_fetch_row($erg)) {
+		while($row = db_fetch_row($erg)) {
 			$nom = stripslashes(htmlentities($row[1]));
 			$mail = stripslashes(htmlentities($row[2]));
 			$row[3] = str_replace("http://http://", "http://", $row[3]);
@@ -134,5 +133,5 @@ else
 
 		<?php
 		}
-		mysql_close($db);
+		db_close();
 ?>

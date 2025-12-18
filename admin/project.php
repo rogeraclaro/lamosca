@@ -2,8 +2,31 @@
 
 	require 'functions.php';
 
-	$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
-	
+	// Database connection is now handled by phpincludes/database.php
+	db_connect();
+
+	// Get POST/GET variables (replaces register_globals)
+	$ProjectNew = $_POST['ProjectNew'] ?? $_GET['ProjectNew'] ?? null;
+	$ProjectChange = $_POST['ProjectChange'] ?? $_GET['ProjectChange'] ?? null;
+	$ModOrder = $_POST['ModOrder'] ?? $_GET['ModOrder'] ?? null;
+	$addModule = $_POST['addModule'] ?? $_GET['addModule'] ?? null;
+	$pid = $_POST['pid'] ?? $_GET['pid'] ?? null;
+	$cid = $_POST['cid'] ?? $_GET['cid'] ?? null;
+	$active = $_POST['active'] ?? $_GET['active'] ?? null;
+	$title = $_POST['title'] ?? '';
+	$title_intern = $_POST['title_intern'] ?? '';
+	$inturl = $_POST['inturl'] ?? '';
+	$strModules = $_POST['strModules'] ?? '';
+	$text_1 = $_POST['text_1'] ?? '';
+	$text_2 = $_POST['text_2'] ?? '';
+	$rss_date = $_POST['rss_date'] ?? '';
+	$rss_time = $_POST['rss_time'] ?? '';
+	$message = '';
+	$hiddenFields = '';
+	$inputButton = '';
+	$activeChecked = '';
+	$strModules = '';
+
 	if($ProjectNew || $ProjectChange) {
 		if(!$active)
 			$active = 0;
@@ -68,8 +91,10 @@
 		$sqlstr = "SELECT id,title,inturl FROM $projecttable WHERE id = $pid";
 		$erg = mysql_db_query($dbname, $sqlstr);
 		$row=mysql_fetch_row($erg);
-		$title = $row[1];
-		$inturl = $row[2];
+		if ($row) {
+			$title = $row[1];
+			$inturl = $row[2];
+		}
 	}
 	
 ?>
@@ -125,24 +150,26 @@
 		if($pid) {
 			$sqlstr = "SELECT id,active,title,text_1,text_2,modules,title_intern,inturl,rss_date,modification_date FROM $projecttable WHERE id = $pid";
 			$erg = mysql_db_query($dbname, $sqlstr);
-			
+
 			$row=mysql_fetch_array($erg);
 
-			$pid = $row[0];
-			if($row[1] == 1)
-				$activeChecked = "checked";
-			$title = stripslashes($row[2]);
-			$title_intern = stripslashes($row[6]);
-			$inturl = stripslashes($row[7]);
-			$text_1 = stripslashes($row[3]);
-			$text_2 = stripslashes($row[4]);
-			if(!$row['rss_date'])
-				$row['rss_date'] = $row['modification_date'];
-			$rss_date = date("d/m/Y",$row['rss_date']);
-			$rss_time = date("H:i",$row['rss_date']);
-			$strModules = $row[5];
-			$inputButton = "<input type='submit' name='ProjectChange' value='Guardar projecte' border='0' />\n";
-			$hiddenFields = "<input type='hidden' name='cid' value='$cid' /><input type='hidden' name='pid' value='$pid' /><input type='hidden' name='addModule' value='0' />";
+			if ($row) {
+				$pid = $row[0];
+				if($row[1] == 1)
+					$activeChecked = "checked";
+				$title = stripslashes($row[2]);
+				$title_intern = stripslashes($row[6]);
+				$inturl = stripslashes($row[7]);
+				$text_1 = stripslashes($row[3]);
+				$text_2 = stripslashes($row[4]);
+				if(!$row['rss_date'])
+					$row['rss_date'] = $row['modification_date'];
+				$rss_date = date("d/m/Y",$row['rss_date']);
+				$rss_time = date("H:i",$row['rss_date']);
+				$strModules = $row[5];
+				$inputButton = "<input type='submit' name='ProjectChange' value='Guardar projecte' border='0' />\n";
+				$hiddenFields = "<input type='hidden' name='cid' value='$cid' /><input type='hidden' name='pid' value='$pid' /><input type='hidden' name='addModule' value='0' />";
+			}
 		} else {
 			$rss_date = date("d/m/Y");
 			$rss_time = date("H:i");
@@ -213,7 +240,7 @@
 		echo "</form>\n";
 		
 		
-		mysql_close($db);
+		db_close();
 				
 	?>
 	</div> 

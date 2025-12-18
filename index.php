@@ -13,25 +13,30 @@ if ($detect->isMobile()) {
 */
 //echo $_SERVER['DOCUMENT_ROOT'];
 
-		extract($_POST);
-		extract($_GET);
+	// Get URL parameters (replaces extract($_GET) and extract($_POST))
+	$curl = $_GET['curl'] ?? '';
+	$purl = $_GET['purl'] ?? '';
 
 	require 'phpincludes/functions.php';
-	$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
+
+	// Database connection is now handled by phpincludes/database.php
+	db_connect();
 
 	$flashJS = "";
+	$pagenotfound = false;
 
 	//echo "curl: $curl, pulr: $purl";
 
 	if($curl) {
 		$sqlstr = "SELECT id,position,content FROM $categorytable WHERE inturl = '$curl'";
-		$erg = mysql_db_query($dbname, $sqlstr);
-		$row=mysql_fetch_row($erg);
+		$erg = db_query($dbname, $sqlstr);
+		$row = db_fetch_row($erg);
 
 		$cid = $row[0];
 		$catPos = $row[1];
 		$content = explode(",", $row[2]);
 		$proPos = 0;
+		$proPosTemp = 0;
 		$pageInfo = "";
 		$content_rev = array_reverse($content);
 
@@ -41,8 +46,8 @@ if ($detect->isMobile()) {
 							id,title,active,text_1,inturl
 							FROM $projecttable
 							WHERE id = " . $content_rev[$i];
-				$erg = mysql_db_query($dbname, $sqlstr);
-				$row=mysql_fetch_row($erg);
+				$erg = db_query($dbname, $sqlstr);
+				$row = db_fetch_row($erg);
 				$active = $row[2];
 				if($active) {
 					$myPid = $row[0];
@@ -96,12 +101,12 @@ if ($detect->isMobile()) {
 					 id,title,active,text_1,text_2
 					 FROM $projecttable
 					 WHERE id = 1";
-		 $erg = mysql_db_query($dbname, $sqlstr);
-		 $row=mysql_fetch_row($erg);
-		 $active = $row[2];
-		 $pageTitle = $row[1];
-		 $pageInfo = $row[3];
-		 $homeDestacat = $row[4];
+		 $erg = db_query($dbname, $sqlstr);
+		 $row = db_fetch_row($erg);
+		 $active = $row[2] ?? 0;
+		 $pageTitle = $row[1] ?? '';
+		 $pageInfo = $row[3] ?? '';
+		 $homeDestacat = $row[4] ?? '';
 		 $htmlTitle = "Lamosca, graphic design";
 
 	}
@@ -114,7 +119,6 @@ if ($detect->isMobile()) {
  <title><?php echo $htmlTitle?></title>
 <?php include("phpincludes/meta_tags.php"); ?>
 
-<?php if($serv == 1) { ?>
  <link href="/css/basic.css" rel="stylesheet" type="text/css" media="screen" />
  <link rel="shortcut icon" href="/favicon.ico" />
  <script type="text/javascript" src="/js/swfobject.js"></script>
@@ -122,14 +126,6 @@ if ($detect->isMobile()) {
  <script type="text/javascript" src="/js/navigation.js"></script>
  <script type="text/javascript" src="/js/lamosca.js"></script>
  <link href="/rss.xml" rel="alternate" type="application/rss+xml" title="LAMOSCA RSS feed" />
-<?php 	} else { ?>
- <link href="/~thomas/lamosca/css/basic.css" rel="stylesheet" type="text/css" media="screen" />
- <script type="text/javascript" src="/~thomas/lamosca/js/swfobject.js"></script>
- <script type="text/javascript" src="/~thomas/lamosca/js/player.js"></script>
- <script type="text/javascript" src="/~thomas/lamosca/js/navigation.js"></script>
- <script type="text/javascript" src="/~thomas/lamosca/js/lamosca.js"></script>
- <link href="/~thomas/lamosca/rss.xml" rel="alternate" type="application/rss+xml" title="LAMOSCA RSS feed" />
-<?php } ?>
 <style type="text/css">
 img {
 	max-width: 100%;
@@ -250,5 +246,5 @@ if(!$purl) {
 </html>
 
 <?php
-	mysql_close($db);
+	db_close();
 ?>

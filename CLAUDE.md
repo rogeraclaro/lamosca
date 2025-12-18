@@ -4,22 +4,59 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Legacy PHP 5.x portfolio website for Lamosca graphic design studio. Database-driven CMS with project/category management, admin panel, and community mosaic feature.
+Portfolio website for Lamosca graphic design studio. Database-driven CMS with project/category management, admin panel, and community mosaic feature.
 
-**Stack:** PHP 5.x, MySQL, Apache mod_rewrite, Prototype.js 1.5.0, Script.aculo.us
+**Stack:** PHP 8.x (migrated from PHP 5.x), MySQL 8.0, Apache mod_rewrite, Prototype.js 1.5.0
 
-## Running the Application
+## Running the Application (Docker)
 
-No build process - direct PHP execution. Requires:
-- Apache with mod_rewrite enabled
-- PHP 5.x (uses deprecated mysql_* functions - incompatible with PHP 7+)
-- MySQL database
+```bash
+# Start the environment
+docker-compose up -d
 
-**Database credentials** are in:
-- `phpincludes/functions.php` (lines 10-27)
-- `admin/functions.php` (lines 8-19)
+# View logs
+docker-compose logs -f web
+
+# Access the container
+docker-compose exec web bash
+
+# Stop the environment
+docker-compose down
+```
+
+**URLs:**
+- Website: http://localhost:8080
+- Admin: http://localhost:8080/admin/
+- phpMyAdmin: http://localhost:8081
+
+**Database Setup:**
+1. Copy your SQL dump to `.docker/init.sql`
+2. Run `docker-compose up -d` (auto-imports on first run)
+3. Or import manually via phpMyAdmin
+
+## Configuration
+
+Database credentials in `.env` file (not tracked in git):
+```
+DB_HOST=db
+DB_NAME=weblamosca
+DB_USER=mylamosca
+DB_PASS=lamosca123
+```
 
 ## Architecture
+
+### Database Abstraction Layer
+`phpincludes/database.php` provides mysqli wrapper functions:
+- `db_connect()` - Establish connection
+- `db_query($dbname, $sql)` - Execute query
+- `db_fetch_row($result)` - Fetch row as indexed array
+- `db_fetch_array($result)` - Fetch row as associative array
+- `db_num_rows($result)` - Get row count
+- `db_escape($string)` - Escape string for SQL
+- `db_close()` - Close connection
+
+Backwards compatibility wrappers (deprecated) also available for gradual migration.
 
 ### URL Routing (.htaccess)
 ```
@@ -37,9 +74,9 @@ No build process - direct PHP execution. Requires:
 - `/ext/rss.php` - RSS feed generator
 
 ### Core Files
-- `phpincludes/functions.php` - Main helpers: `prepXml()`, `buildModules()`, database functions
-- `admin/functions.php` - Admin helpers: `module_listing()`, `project_select_listing()`, `cleanfilename()`
-- `Mobile_Detect.php` - Mobile device detection library
+- `phpincludes/database.php` - Database abstraction layer (mysqli)
+- `phpincludes/functions.php` - Main helpers: `prepXml()`, `buildModules()`
+- `admin/functions.php` - Admin helpers: `module_listing()`, `project_select_listing()`
 
 ### Database Schema
 - `categories` - id, title, position, content (comma-separated project IDs)
@@ -51,14 +88,14 @@ No build process - direct PHP execution. Requires:
 - `phpincludes/` - Core application logic and helpers
 - `admin/` - Admin panel with WhizzYWig WYSIWYG editor
 - `mosaic/` - Community mosaic feature
-- `img/projects/` - Project images (136 subdirectories)
-- `tipo/` - Custom webfonts (lmsc family in EOT, TTF, WOFF, WOFF2, SVG)
-- `js/` - Prototype.js framework and custom scripts
+- `img/projects/` - Project images
+- `.docker/` - Docker configuration and SQL init
 
-## Legacy Concerns
+## Migration Notes (PHP 5.x to 8.x)
 
-This codebase uses deprecated patterns incompatible with modern PHP:
-- `mysql_*` functions (removed in PHP 7.0)
-- `extract()` on `$_GET`/`$_POST`
-- Raw SQL concatenation without prepared statements
-- Hardcoded database credentials
+The following changes were made:
+- Replaced `mysql_*` functions with mysqli via `phpincludes/database.php`
+- Replaced `extract($_GET)`/`extract($_POST)` with explicit variable assignment
+- Database credentials moved to environment variables
+
+Backup files (index_.php, index2.php, etc.) have NOT been migrated and should be deleted or updated if needed.

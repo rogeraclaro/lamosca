@@ -1,24 +1,25 @@
 <?php
 	require '../phpincludes/functions.php';
+	db_connect();
 
-		$mosaictable="mosaic";	
-	
-	$db = mysql_connect($host, $db_user, $db_password) or die("Could not connect: " . mysql_error());
-	
+	// Get GET variable (replaces register_globals)
+	$id = $_GET['id'] ?? 0;
+	$id = (int)$id; // Ensure it's an integer for security
+
 	$sqlstr = "SELECT id, nom, mail, web, comentari, color, data FROM $mosaictable WHERE id = $id";
-	$erg = mysql_db_query($dbname, $sqlstr);
-	
-	$row=mysql_fetch_row($erg);
-	
-	$nom = stripslashes(htmlentities($row[1]));
-	$mail = stripslashes(htmlentities($row[2]));
-	$row[3] = str_replace("http://http://", "http://", $row[3]);
-	$web = stripslashes(htmlentities($row[3]));
-	$comentari = stripslashes(htmlentities($row[4]));
-	$color = $row[5];
-	$data = $row[6];
-	
-	mysql_close($db);
+	$erg = db_query($dbname, $sqlstr);
+
+	$row = db_fetch_row($erg);
+
+	$nom = htmlentities($row[1] ?? '');
+	$mail = htmlentities($row[2] ?? '');
+	$row[3] = str_replace("http://http://", "http://", $row[3] ?? '');
+	$web = htmlentities($row[3]);
+	$comentari = htmlentities($row[4] ?? '');
+	$color = $row[5] ?? 0;
+	$data = $row[6] ?? '';
+
+	db_close();
 
 ?>
 

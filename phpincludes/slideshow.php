@@ -1,10 +1,13 @@
 <?php
 
 	require 'functions.php';
-	
-	if($pid) {
 
-		$db = mysql_connect($db_host, $db_user, $db_password) or die("Abort: Connection to '$db_host' not possible.");
+	// Get GET variable (replaces register_globals)
+	$pid = $_GET['pid'] ?? null;
+
+	if($pid) {
+		$pid = (int)$pid; // Ensure it's an integer for security
+		db_connect();
 
 		echo " <slideshow>\n";
 		echo "  <settings>\n";
@@ -18,8 +21,8 @@
 	
 	
 		$sqlstr = "SELECT id,modules FROM $projecttable WHERE id = $pid";
-		$erg = mysql_db_query($dbname, $sqlstr);
-		$row=mysql_fetch_row($erg);
+		$erg = db_query($dbname, $sqlstr);
+		$row = db_fetch_row($erg);
 		$pid = $row[0];
 		$modules = explode(";",$row[1]);
 		
@@ -27,8 +30,8 @@
 			if($modules[$i]) {
 			
 				$sqlstr = "SELECT id,title,image,imagetype,width,height,text_1,text_2,text_3,text_4 FROM $moduletable WHERE id = " . $modules[$i];
-				$erg = mysql_db_query($dbname, $sqlstr);
-				$row=mysql_fetch_row($erg);
+				$erg = db_query($dbname, $sqlstr);
+				$row = db_fetch_row($erg);
 				$title = $row[1];
 				$image = $row[2];
 				$imgWidth = $row[4];
@@ -55,7 +58,7 @@
 		echo "  </images>\n";
 		echo " </slideshow>\n";
 	
-		mysql_close($db);				
+		db_close();
 
 	}
 
