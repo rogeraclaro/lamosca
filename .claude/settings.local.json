@@ -9,7 +9,10 @@
       "Bash(for page in \"\" \"category.php?cid=1\" \"projectlist.php?cid=1\" \"project.php?pid=2\")",
       "Bash(do echo -n \"admin/$page: \")",
       "Bash(done)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nMigrate PHP 5.4 to PHP 8.x with Docker environment\n\n- Add Docker configuration \\(docker-compose.yml, Dockerfile\\) with PHP 8.2 + MySQL 8.0\n- Create database abstraction layer \\(phpincludes/database.php\\) with mysqli\n- Replace deprecated mysql_* functions with db_* wrappers\n- Remove register_globals dependency \\(extract\\($_ET\\), extract\\($_OST\\)\\)\n- Fix undefined variable warnings for PHP 8 strict mode\n- Add .gitignore for environment files and dependencies\n- Configure relative URLs for local development\n- Set latin1 charset for legacy database compatibility\n- Add local admin authentication \\(.htpasswd\\)\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(cat:*)",
+      "Bash(chmod +x deploy-test.sh deploy-prod.sh)"
     ]
   }
 }
