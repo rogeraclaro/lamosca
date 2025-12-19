@@ -99,3 +99,47 @@ The following changes were made:
 - Database credentials moved to environment variables
 
 Backup files (index_.php, index2.php, etc.) have NOT been migrated and should be deleted or updated if needed.
+
+## Disseny amb Gemini AI
+
+Per tasques de disseny visual (UI, layouts, components), utilitza Gemini com a col·laborador de disseny.
+
+### Configuració
+Variable d'entorn necessària:
+```bash
+export GEMINI_API_KEY="AIzaSyCa5-TtF4YevpeZDbesWfUbYeJ1EDW5ZvI"
+```
+
+### Workflow de Disseny
+
+1. **Quan necessitis dissenyar** una interfície, component o layout:
+
+```bash
+curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$GEMINI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [{
+      "parts": [{"text": "Ets un dissenyador UI/UX expert. Dissenya: [DESCRIPCIÓ DEL DISSENY]. Proporciona: 1) Estructura HTML semàntica, 2) Estils CSS moderns, 3) Paleta de colors, 4) Consideracions de responsivitat."}]
+    }]
+  }' | jq -r '.candidates[0].content.parts[0].text'
+```
+
+2. **Mostra el disseny** a l'usuari per aprovació
+3. **Implementa el codi** basat en la resposta de Gemini
+
+### Exemple d'ús
+```bash
+# Dissenyar un botó modern
+curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$GEMINI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [{
+      "parts": [{"text": "Dissenya un botó CTA modern per una web de portfolio de disseny gràfic. Estil minimalista, colors neutres."}]
+    }]
+  }' | jq -r '.candidates[0].content.parts[0].text'
+```
+
+### Notes
+- Gemini s'encarrega del disseny visual i decisions estètiques
+- Claude s'encarrega de la implementació del codi i la integració
+- Sempre mostrar la proposta de disseny a l'usuari abans d'implementar
