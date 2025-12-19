@@ -15,13 +15,14 @@ if (getenv('DB_HOST') === 'db') {
     // Docker environment
     $imgroot = "/img/";
     $imgrootsrv = "/var/www/html/img/";
-    $myServer = "/";
 } else {
-    // Production/test subdirectory
-    $imgroot = "/test/img/";
-    $imgrootsrv = "/usr/home/lamosca.com/web/test/img/";
-    $myServer = "/test/";
+    // Production environment
+    $imgroot = "/img/";
+    $imgrootsrv = "/usr/home/lamosca.com/web/img/";
 }
+
+// Use relative URLs for internal links (works in both local and production)
+$myServer = "/";
 
 // Table names
 $categorytable = "categories";

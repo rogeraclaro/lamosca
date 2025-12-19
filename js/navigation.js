@@ -2,7 +2,7 @@
  * www.lamosca.com -- navigation
  */
 
-myServer = "/test/";
+myServer = "/";
 
 
 function navigate(selField) {
