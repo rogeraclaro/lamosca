@@ -105,9 +105,14 @@ Backup files (index_.php, index2.php, etc.) have NOT been migrated and should be
 Per tasques de disseny visual (UI, layouts, components), utilitza Gemini com a col·laborador de disseny.
 
 ### Configuració
-Variable d'entorn necessària:
+La clau API de Gemini es guarda al fitxer `.env` (no commitejat):
+```
+GEMINI_API_KEY=la_teva_clau_aqui
+```
+
+Carrega-la abans d'usar:
 ```bash
-export GEMINI_API_KEY="AIzaSyCa5-TtF4YevpeZDbesWfUbYeJ1EDW5ZvI"
+source .env 2>/dev/null || export GEMINI_API_KEY=$(grep GEMINI_API_KEY .env | cut -d= -f2)
 ```
 
 ### Workflow de Disseny
