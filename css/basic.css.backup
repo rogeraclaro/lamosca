@@ -37,7 +37,7 @@
 
 html {
     font-family: Helvetica, "Arial Narrow", Verdana, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: bold;
     color: #888;
     margin: 0;
@@ -54,7 +54,7 @@ body {
 }
 
 p {
-    line-height: 150%;
+    line-height: 120%;
     padding: 0;
     margin: 0;
 }
@@ -82,10 +82,10 @@ p {
     float: left;
     margin: 0;
     padding: 0;
-    width: 200px;
+    width: 140px;
     position: absolute;
     top: 0px;
-    left: 30px;
+    left: 25px;
     z-index: 2;
 }
 
@@ -99,8 +99,8 @@ p {
 }
 
 #project #wrap {
-    padding: 0 30px 0 280px;
-    max-width: 1200px;
+    padding: 0 10px 0 325px;
+    max-width: 100%
 }
 
 #project img {
@@ -159,8 +159,8 @@ select.js_index {
 }
 
 .pageInfo {
-    font-size: 12px;
-    width: 180px;
+    font-size: 9px;
+    width: 140px;
     margin: 0 10px 230px 0;
     float: left;
 }
@@ -232,24 +232,23 @@ form {
 
 #js_nav_1 {
     float: left;
-    width: 180px;
+    width: 140px;
     margin: 0;
     padding: 0;
 }
 
 #js_nav_2 {
     float: left;
-    width: 180px;
+    width: 140px;
     padding: 0;
-    margin: 0 0 0 15px;
+    margin: 0 0 0 10px;
 }
 
 select.js_nav {
     font-family: Verdana, Arial, Helvetica;
     font-weight: normal;
-    font-size: 14px;
-    width: 170px;
-    padding: 5px;
+    font-size: 9px;
+    width: 125px;
 }
 
 
@@ -304,29 +303,27 @@ h5 {
 
 .lamosca {
     font-family: lmsc2;
-    font-size: 32px;
+    font-size: 20px;
     color: #3b3b3b;
     letter-spacing: -0.6px;
 }
 
 .adresa {
     font-family: lmsc4;
-    font-size: 11px;
+    font-size: 9px;
     color: #8f8f8f;
     text-transform: uppercase;
-    margin-top: 60px;
+    margin-top: 80px;
     font-weight: lighter;
-    line-height: 1.6;
 }
 
 .adresa_home {
     font-family: lmsc4;
-    font-size: 11px;
+    font-size: 9px;
     color: #8f8f8f;
     text-transform: uppercase;
-    margin-top: 60px;
+    margin-top: 80px;
     font-weight: lighter;
-    line-height: 1.6;
 }
 
 .adresa_mobile {
@@ -352,154 +349,6 @@ h5 {
     font-weight: lighter;
 }
 
-/* Desktop gran (>1200px) */
-@media (min-width: 1200px) {
-    #projectinfo {
-        width: 220px;
-        left: 40px;
-    }
-
-    #project #wrap {
-        padding: 0 60px 0 320px;
-        max-width: 1400px;
-    }
-
-    .lamosca {
-        font-size: 36px;
-    }
-
-    .adresa,
-    .adresa_home {
-        font-size: 12px;
-        margin-top: 50px;
-    }
-
-    #navigation {
-        padding: 39px 0 0 40px;
-    }
-
-    #js_nav_1,
-    #js_nav_2 {
-        width: 200px;
-    }
-
-    select.js_nav {
-        width: 190px;
-        font-size: 14px;
-    }
-}
-
-/* Tablet (768px - 1199px) */
-@media (min-width: 768px) and (max-width: 1199px) {
-    #projectinfo {
-        width: 180px;
-        left: 25px;
-    }
-
-    #project #wrap {
-        padding: 0 25px 0 250px;
-    }
-
-    #project #modules {
-        min-width: auto;
-    }
-
-    .lamosca {
-        font-size: 28px;
-    }
-}
-
-/* Mòbil (<768px) */
-@media (max-width: 767px) {
-    body {
-        background: url(pics/bg_mobile.gif) no-repeat;
-    }
-
-    #navigation {
-        height: auto;
-        padding: 20px;
-        background-color: #f5f5f5;
-    }
-
-    #project {
-        top: 20px;
-    }
-
-    #projectinfo {
-        position: relative;
-        width: 100%;
-        left: 0;
-        padding: 0 20px;
-        top: 0;
-    }
-
-    #project #modules {
-        position: relative;
-        min-width: auto;
-        top: 0;
-    }
-
-    #project #wrap {
-        padding: 20px;
-        max-width: 100%;
-        margin-top: 20px;
-    }
-
-    #js_nav_1 {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    #js_nav_2 {
-        width: 100%;
-        margin: 0;
-    }
-
-    select.js_nav {
-        width: 100%;
-        font-size: 16px;
-        padding: 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        background-color: white;
-    }
-
-    .lamosca {
-        font-size: 28px;
-    }
-
-    .adresa_home {
-        display: none;
-    }
-
-    .adresa_mobile {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: white;
-        padding: 15px 20px;
-        font-size: 12px;
-        border-top: 1px solid #eee;
-        z-index: 100;
-    }
-
-    .pageSponsor {
-        display: none;
-    }
-
-    #project img {
-        padding: 0 0 20px 0;
-    }
-
-    .pageInfo {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
-
-/* Legacy mobile - keeping for very small devices */
 @media only screen and (min-device-width: 320px) and (max-device-width: 680px) {
     body {
         background: url(pics/bg_mobile.gif) no-repeat;

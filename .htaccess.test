@@ -1,0 +1,25 @@
+ErrorDocument 404 /test/error404.html
+
+Options +FollowSymLinks
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+    RewriteBase /test/
+
+# 	rss feed
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^rss.xml$ /test/ext/rss.php [NC,L,QSA]
+
+	RewriteRule ^(mosaic)/?$ /test/mosaic/index.php [L]
+	RewriteRule ^mosaic/index.html$ /test/mosaic/index.php [L]
+
+	RewriteRule ^admin/$ /test/admin/index.php [L]
+	RewriteRule ^admin$ /test/admin/index.php [L]
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([a-zA-Z0-9_.-]+)/$ /test/index.php?curl=$1 [L]
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([a-zA-Z0-9_.-]+)/([a-z0-9_.-]+).html$ /test/index.php?curl=$1&purl=$2 [L]
+
+</IfModule>
